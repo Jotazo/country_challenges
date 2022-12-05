@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 95%;
+}
+
+.title {
+  font-family: Poppins700, sans-serif;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 2.25rem;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  position: absolute;
+  right: 0;
+  width: 150px;
+}
+
+.section {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 2.25rem 1.5rem;
+}
+
+@media (min-width: 500px) {
+  .container {
+    width: 461px;
+  }
+}
