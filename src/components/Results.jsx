@@ -10,7 +10,7 @@ const Results = () => {
     <div className="results-container">
       <img src={logo} alt="icon" />
       <section className="text-content">
-        <h1 className="results-title">Results</h1>
+        <h1 className="results-title">Resultados</h1>
         <p className="results-text">
           Has obtenido <span>{appState.score}</span> aciertos
         </p>

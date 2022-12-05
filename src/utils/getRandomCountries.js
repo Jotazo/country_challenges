@@ -35,6 +35,7 @@ const getRandomCountries = (aoCountries) => {
   const nMax = aoCountries.length;
   for (let i = 0; i < 4; i++) {
     const nRandomIndex = getRandomIndex(anIndexSelected, nMax);
+    anIndexSelected.push(nRandomIndex);
     aoRandomCountries.push({
       ...aoCountries[nRandomIndex],
       isClicked: false,

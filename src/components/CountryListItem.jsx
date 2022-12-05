@@ -22,7 +22,9 @@ const CountryListItem = ({ country }) => {
   const sSuccessStyles = "selected success";
   const sErrorStyles = "selected error";
 
-  const isSuccess = () => oCountry.isClicked && oCountry.selected;
+  const isSuccess = () =>
+    (oCountry.isClicked && oCountry.selected) ||
+    (appState.isFinished && oCountry.selected);
   const isError = () => oCountry.isClicked && !oCountry.selected;
 
   const setStylesClicked = () =>
