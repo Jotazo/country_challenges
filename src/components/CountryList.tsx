@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { GAME_OPTIONS } from "../constants";
 
 import { AppContext } from "../context/AppContext";
 import { QuizzContext } from "../context/QuizzContext";
@@ -6,7 +7,7 @@ import { QuizzContext } from "../context/QuizzContext";
 import CountryListItem from "./CountryListItem";
 
 const CountryList = () => {
-  const { appState, setNext, setFinished, setGameSelected } =
+  const { appState, setNext, setFinished, setGameSelected, gameSelected } =
     useContext(AppContext)!;
   const { randomQuiz, oCountrySuccess, getNewQuizz } =
     useContext(QuizzContext)!;
@@ -24,7 +25,16 @@ const CountryList = () => {
 
   return (
     <>
-      <h3 className="game-title">{oCountrySuccess.capital} es la capital de</h3>
+      {gameSelected === GAME_OPTIONS.capitales ? (
+        <h3 className="game-title">
+          {oCountrySuccess.capital} es la capital de
+        </h3>
+      ) : (
+        <>
+          <img className="flag-img" src={oCountrySuccess.flag} alt="bandera" />
+          <h3 className="game-title">Esta es la bandera de</h3>
+        </>
+      )}
       <ul className="list">
         {randomQuiz.map((oCountry) => (
           <CountryListItem key={oCountry.letter} country={oCountry} />

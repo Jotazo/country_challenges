@@ -2,9 +2,10 @@ import React from "react";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { QuizzContext } from "../context/QuizzContext";
+import { GameOptions } from "../types";
 
 type Props = {
-  sOption: string;
+  sOption: GameOptions;
 };
 
 const SelectionCardItem = ({ sOption }: Props) => {

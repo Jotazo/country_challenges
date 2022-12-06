@@ -1,15 +1,15 @@
 import React from "react";
+import { GameOptions } from "../types";
 import SelectionCardItem from "./SelectionCardItem";
 
 const SelectionCard = () => {
-  const OPTIONS = ["Solo Capitales"];
-  // const OPTIONS = ["Only Capitals", "Only Flags", "Mixed Game"];
+  const OPTIONS: GameOptions[] = ["Capitales", "Banderas"];
 
   return (
     <>
       <h1 className="game-title">Selecciona el tipo de juego</h1>
       <ul className="list">
-        {OPTIONS.map((opt, index) => (
+        {OPTIONS.map((opt: GameOptions, index) => (
           <SelectionCardItem key={index} sOption={opt} />
         ))}
       </ul>

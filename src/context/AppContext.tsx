@@ -1,4 +1,5 @@
 import React, { createContext, PropsWithChildren, useState } from "react";
+import { GameOptions } from "../types";
 import { IAppContext, IAppState } from "./interfaces";
 
 export const AppContext = createContext<IAppContext | null>(null);
@@ -10,7 +11,7 @@ const initialAppState: IAppState = {
 };
 
 const AppContextProvider = ({ children }: PropsWithChildren) => {
-  const [gameSelected, setGameSelected] = useState("");
+  const [gameSelected, setGameSelected] = useState<GameOptions | "">("");
 
   const [appState, setAppState] = useState(initialAppState);
 
@@ -43,7 +44,7 @@ const AppContextProvider = ({ children }: PropsWithChildren) => {
         setFinished,
         restartGame,
         gameSelected,
-        setGameSelected: (sGameSelected: string) =>
+        setGameSelected: (sGameSelected: GameOptions) =>
           setGameSelected(sGameSelected),
       }}
     >

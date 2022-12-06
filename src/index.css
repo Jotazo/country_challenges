@@ -51,6 +51,11 @@ code {
   color: #2f527b;
 }
 
+.flag-img{
+  width: 150px;
+  height: 100px;
+}
+
 .list {
   list-style: none;
   padding: 0;
