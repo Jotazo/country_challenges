@@ -3,7 +3,7 @@ import { GameOptions } from "../types";
 import SelectionCardItem from "./SelectionCardItem";
 
 const SelectionCard = () => {
-  const OPTIONS: GameOptions[] = ["Capitales", "Banderas"];
+  const OPTIONS: GameOptions[] = ["Capitales", "Banderas", "Mixto"];
 
   return (
     <>
