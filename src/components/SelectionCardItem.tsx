@@ -1,10 +1,15 @@
+import React from "react";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { QuizzContext } from "../context/QuizzContext";
 
-const SelectionCardItem = ({ sOption }) => {
-  const { setGameSelected } = useContext(AppContext);
-  const { getNewQuizz } = useContext(QuizzContext);
+type Props = {
+  sOption: string;
+};
+
+const SelectionCardItem = ({ sOption }: Props) => {
+  const { setGameSelected } = useContext(AppContext)!;
+  const { getNewQuizz } = useContext(QuizzContext)!;
   const handleClick = () => {
     setGameSelected(sOption);
     getNewQuizz();

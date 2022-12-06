@@ -1,7 +1,13 @@
+import React from "react";
 import logo from "../assets/icon.svg";
 import "./CountryCardLayout.css";
 
-const CountryCardLayout = ({ children, isFinished }) => {
+type Props = {
+  children: JSX.Element;
+  isFinished: boolean;
+};
+
+const CountryCardLayout = ({ children, isFinished }: Props) => {
   return (
     <div className="container">
       <h1 className="title">Country Quiz</h1>

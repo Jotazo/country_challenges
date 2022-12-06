@@ -5,7 +5,9 @@ import App from "./App";
 import AppContextProvider from "./context/AppContext";
 import QuizContextProvider from "./context/QuizzContext";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const rootElement = document.getElementById("root");
+if (!rootElement) throw new Error("Falied to find the root element");
+const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <QuizContextProvider>

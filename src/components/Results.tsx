@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import logo from "../assets/winner_icon.svg";
 import "./Results.css";
 import { AppContext } from "../context/AppContext";
 
 const Results = () => {
-  const { appState, restartGame } = useContext(AppContext);
+  const { appState, restartGame } = useContext(AppContext)!;
 
   return (
     <div className="results-container">

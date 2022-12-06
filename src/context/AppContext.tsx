@@ -1,19 +1,20 @@
-import { createContext, useState } from "react";
+import React, { createContext, PropsWithChildren, useState } from "react";
+import { IAppContext, IAppState } from "./interfaces";
 
-export const AppContext = createContext(null);
+export const AppContext = createContext<IAppContext | null>(null);
 
-const initialState = {
+const initialAppState: IAppState = {
   isFinished: false,
   isSuccess: false,
   score: 0,
 };
 
-const AppContextProvider = ({ children }) => {
+const AppContextProvider = ({ children }: PropsWithChildren) => {
   const [gameSelected, setGameSelected] = useState("");
 
-  const [appState, setAppState] = useState(initialState);
+  const [appState, setAppState] = useState(initialAppState);
 
-  const setAnswer = (bisCorrectAnswer) => {
+  const setAnswer = (bisCorrectAnswer: boolean) => {
     setAppState({
       isFinished: true,
       isSuccess: bisCorrectAnswer,
@@ -30,7 +31,7 @@ const AppContextProvider = ({ children }) => {
   };
 
   const restartGame = () => {
-    setAppState({ ...initialState, score: 0 });
+    setAppState({ ...initialAppState, score: 0 });
   };
 
   return (
@@ -42,7 +43,8 @@ const AppContextProvider = ({ children }) => {
         setFinished,
         restartGame,
         gameSelected,
-        setGameSelected: (sGameSelected) => setGameSelected(sGameSelected),
+        setGameSelected: (sGameSelected: string) =>
+          setGameSelected(sGameSelected),
       }}
     >
       {children}
