@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import circleCross from "../assets/close-circle-outline.png";
-import circleCheck from "../assets/check-circle-outline.png";
+import circleCross from "../../assets/close-circle-outline.png";
+import circleCheck from "../../assets/check-circle-outline.png";
 
-import { ICountryWithSuccess } from "../interfaces/oCountry";
-import { IAppState } from "../context/interfaces";
+import { ICountryWithSuccess } from "../../interfaces/oCountry";
+import { IAppState } from "../../context/interfaces";
 
-import { AppContext } from "../context/AppContext";
-import useOcountry from "../hooks/useOcountry";
+import { AppContext } from "../../context/AppContext";
+import useOcountry from "../../hooks/useOcountry";
 import "./CountryListItem.css";
 
 const styles = (oCountry: ICountryWithSuccess, appState: IAppState) => {
@@ -30,11 +30,7 @@ const styles = (oCountry: ICountryWithSuccess, appState: IAppState) => {
   return { setStylesClicked, iconSelected };
 };
 
-type Props = {
-  country: ICountryWithSuccess;
-};
-
-const CountryListItem = ({ country }: Props) => {
+const CountryListItem = ({ country }: { country: ICountryWithSuccess }) => {
   const { appState, setAnswer } = useContext(AppContext)!;
   const { oCountry, setOcountryClicked } = useOcountry(country);
 

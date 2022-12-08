@@ -4,9 +4,9 @@ export interface IAppState {
   isFinished: boolean;
   isSuccess: boolean;
   score: number;
+  lifes: number
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface IAppContext {
   appState: IAppState;
   setAnswer: Function;

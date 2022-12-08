@@ -8,6 +8,7 @@ const initialAppState: IAppState = {
   isFinished: false,
   isSuccess: false,
   score: 0,
+  lifes: 3,
 };
 
 const AppContextProvider = ({ children }: PropsWithChildren) => {
@@ -20,6 +21,7 @@ const AppContextProvider = ({ children }: PropsWithChildren) => {
       isFinished: true,
       isSuccess: bisCorrectAnswer,
       score: bisCorrectAnswer ? (appState.score += 1) : appState.score,
+      lifes: bisCorrectAnswer ? appState.lifes : (appState.lifes -= 1),
     });
   };
 
@@ -32,7 +34,7 @@ const AppContextProvider = ({ children }: PropsWithChildren) => {
   };
 
   const restartGame = () => {
-    setAppState({ ...initialAppState, score: 0 });
+    setAppState({ ...initialAppState, lifes: 3 });
   };
 
   return (

@@ -1,24 +1,21 @@
-import React from "react";
-import { useContext } from "react";
-import { AppContext } from "../context/AppContext";
-import { QuizzContext } from "../context/QuizzContext";
+import React, { useContext } from "react";
+import { motion } from "framer-motion";
+
 import { GameOptions } from "../types";
+import { AppContext } from "../context/AppContext";
+import { listHoverStyles } from "../framerStyles";
 
-type Props = {
-  sOption: GameOptions;
-};
-
-const SelectionCardItem = ({ sOption }: Props) => {
+const SelectionCardItem = ({ sOption }: { sOption: GameOptions }) => {
   const { setGameSelected } = useContext(AppContext)!;
-  const { getNewQuizz } = useContext(QuizzContext)!;
-  const handleClick = () => {
-    setGameSelected(sOption);
-    getNewQuizz();
-  };
+
   return (
-    <li onClick={handleClick} className="list-item">
+    <motion.li
+      whileHover={listHoverStyles}
+      onClick={() => setGameSelected(sOption)}
+      className="list-item"
+    >
       {sOption}
-    </li>
+    </motion.li>
   );
 };
 
