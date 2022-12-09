@@ -1,4 +1,4 @@
-// List elements hover styles 
+// List selection elements hover styles 
 export const listHoverStyles = {
   color: "#fff",
   backgroundColor: "#f9a826",

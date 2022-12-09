@@ -1,39 +1,40 @@
-.results-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
+.results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  min-height: 470px;
 }
 
-.text-content{
-    text-align: center;
+.text-content {
+  text-align: center;
 }
 
-.results-title{
-    font-family: Poppins700, sans-serif;
-    font-size: 3rem;
-    color: #1D355D;
-    margin: 0;
+.results-title {
+  font-family: Poppins700, sans-serif;
+  font-size: 3rem;
+  color: #1d355d;
+  margin: 0;
 }
 
-.results-text{
-    font-family: Poppins400, sans-serif;
-    font-size: 1.25rem;
+.results-text {
+  font-family: Poppins400, sans-serif;
+  font-size: 1.25rem;
 }
 
-.results-text span{
-    font-family: Poppins700, sans-serif;
-    font-size: 2.5rem;
-    color: #6FCF97;
+.results-text span {
+  font-family: Poppins700, sans-serif;
+  font-size: 2.5rem;
+  color: #6fcf97;
 }
 
-.btn-underline{
-    cursor: pointer;
-    padding: 1rem 3rem;
-    border: 3px solid #1D355D;
-    border-radius: .75rem;
-    background-color: #fff;
-    font-family: Poppins600, sans-serif;
-    font-size: 1.125rem;
-    color: #1D355D;
+.btn-underline {
+  cursor: pointer;
+  padding: 1rem 3rem;
+  border: 3px solid #1d355d;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  font-family: Poppins600, sans-serif;
+  font-size: 1.125rem;
+  color: #1d355d;
 }

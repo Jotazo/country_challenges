@@ -1,19 +1,24 @@
 import React, { useContext } from "react";
-import logo from "../assets/winner_icon.svg";
-import "./Results.css";
-import { AppContext } from "../context/AppContext";
 import { motion } from "framer-motion";
+
+import logo from "../assets/winner_icon.svg";
+import { AppContext } from "../context/AppContext";
+
+import "./Results.css";
 
 const Results = () => {
   const { appState, restartGame } = useContext(AppContext)!;
-  
+
   return (
     <motion.div
       layout
       key={3}
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0, animationDelay: ".5" }}
       animate={{
         opacity: 1,
+        transition: {
+          duration: 2,
+        },
       }}
       exit={{
         opacity: 0,

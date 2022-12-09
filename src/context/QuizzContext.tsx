@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  PropsWithChildren,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 import { ICountryWithSuccess } from "../interfaces/oCountry";
 import { IQuizzContext } from "./interfaces";
@@ -13,7 +8,7 @@ import getRandomCountries from "../utils/getRandomCountries";
 
 export const QuizzContext = createContext<IQuizzContext | null>(null);
 
-const QuizContextProvider = ({ children }: PropsWithChildren) => {
+const QuizContextProvider = ({ children }: { children: JSX.Element }) => {
   const { countries } = useCountries([]);
   const [randomQuiz, setRandomQuiz] = useState<ICountryWithSuccess[]>([]);
 

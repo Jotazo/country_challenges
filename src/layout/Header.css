@@ -1,0 +1,32 @@
+.layout-header {
+  position: relative;
+}
+
+.layout-section {
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+  min-height: 24px;
+}
+
+.layout-section span {
+  margin: 0;
+}
+
+.layout-title {
+  margin: 0;
+  margin-bottom: .75rem;
+}
+
+.layout-logo {
+  position: absolute;
+  right: 0;
+  top: 2rem;
+  width: 125px;
+}
+
+@media (min-width: 500px) {
+  .layout-logo {
+    width: 150px;
+  }
+}

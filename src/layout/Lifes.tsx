@@ -1,23 +1,12 @@
 import React, { useContext } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+
+import { AppContext } from "../context/AppContext";
+import LifeItem from "./LifeItem";
 
 import "./Lifes.css";
 
-import { AppContext } from "../../context/AppContext";
-
-const life = "💙";
-
-const LifeItem = ({ life }: { life: string }) => {
-  return (
-    <motion.span
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      {life}
-    </motion.span>
-  );
-};
+const life = "🏴‍☠️";
 
 const Lifes = () => {
   const { appState } = useContext(AppContext)!;

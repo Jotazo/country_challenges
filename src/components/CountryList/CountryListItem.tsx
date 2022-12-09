@@ -9,25 +9,29 @@ import { AppContext } from "../../context/AppContext";
 import useOcountry from "../../hooks/useOcountry";
 import "./CountryListItem.css";
 
-const styles = (oCountry: ICountryWithSuccess, appState: IAppState) => {
+const clickStyles = (oCountry: ICountryWithSuccess, appState: IAppState) => {
   const sSuccessStyles = "selected success";
   const sErrorStyles = "selected error";
 
-  const isSuccess = (): boolean =>
+  const isSuccess: boolean =
     (oCountry.isClicked && oCountry.selected) ||
-    (appState.isFinished && oCountry.selected);
-  const isError = (): boolean => oCountry.isClicked && !oCountry.selected;
+    (appState.isFinished && oCountry.selected) ||
+    (appState.timeLeft === 0 && oCountry.selected);
+  const isError: boolean = oCountry.isClicked && !oCountry.selected;
 
-  const setStylesClicked = (): string =>
-    isSuccess() ? sSuccessStyles : isError() ? sErrorStyles : "";
+  const clickedStyles: string = isSuccess
+    ? sSuccessStyles
+    : isError
+    ? sErrorStyles
+    : "";
 
-  const iconSelected: string | null = isSuccess()
+  const iconSelected: string | null = isSuccess
     ? circleCheck
-    : isError()
+    : isError
     ? circleCross
     : null;
 
-  return { setStylesClicked, iconSelected };
+  return { clickedStyles, iconSelected };
 };
 
 const CountryListItem = ({ country }: { country: ICountryWithSuccess }) => {
@@ -35,19 +39,15 @@ const CountryListItem = ({ country }: { country: ICountryWithSuccess }) => {
   const { oCountry, setOcountryClicked } = useOcountry(country);
 
   const handleSelectedOption = () => {
-    if (appState.isFinished) return;
+    if (appState.isFinished || appState.timeLeft === 0) return;
     setOcountryClicked();
     setAnswer(oCountry.selected);
   };
 
-  const { setStylesClicked, iconSelected } = styles(oCountry, appState);
+  const { clickedStyles, iconSelected } = clickStyles(oCountry, appState);
 
   return (
-    <li
-      onClick={handleSelectedOption}
-      key={country.letter}
-      className={`list-item ${setStylesClicked()}`}
-    >
+    <li onClick={handleSelectedOption} className={`list-item ${clickedStyles}`}>
       <span>{country.letter}</span> {country.name}{" "}
       {iconSelected && <img src={iconSelected} alt="icon" />}
     </li>

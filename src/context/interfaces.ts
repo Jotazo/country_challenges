@@ -3,8 +3,9 @@ import { ICountryWithSuccess } from "../interfaces/oCountry";
 export interface IAppState {
   isFinished: boolean;
   isSuccess: boolean;
+  timeLeft: number;
   score: number;
-  lifes: number
+  lifes: number;
 }
 
 export interface IAppContext {
@@ -12,6 +13,7 @@ export interface IAppContext {
   setAnswer: Function;
   setNext: Function;
   setFinished: Function;
+  setCountdownTimer: Function;
   restartGame: Function;
   gameSelected: string;
   setGameSelected: Function;
@@ -19,6 +21,6 @@ export interface IAppContext {
 
 export interface IQuizzContext {
   randomQuiz: ICountryWithSuccess[];
-  oCountrySuccess: ICountryWithSuccess ;
+  oCountrySuccess: ICountryWithSuccess;
   getNewQuizz: Function;
 }

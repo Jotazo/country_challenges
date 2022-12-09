@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 95%;
+  margin-top: 1rem;
+}
+
+.section {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 500px) {
+  .container {
+    width: 461px;
+  }
+}

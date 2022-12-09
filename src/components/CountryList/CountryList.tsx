@@ -1,11 +1,10 @@
-import { motion } from "framer-motion";
 import React, { useContext } from "react";
+import { motion } from "framer-motion";
 
 import { AppContext } from "../../context/AppContext";
 import { QuizzContext } from "../../context/QuizzContext";
 
 import CountryListItem from "./CountryListItem";
-import Lifes from "./Lifes";
 import SelectedGame from "./SelectedGame";
 
 const CountryList = () => {
@@ -29,33 +28,31 @@ const CountryList = () => {
   return (
     <motion.div
       layout
-      key={2}
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
+        transition: {
+          duration: 1.5,
+        },
       }}
       exit={{
         opacity: 0,
       }}
       style={{ display: "flex", flexDirection: "column" }}
     >
-      <Lifes />
       <SelectedGame oCountry={oCountrySuccess} gameSelected={gameSelected} />
       <ul className="list">
         {randomQuiz.map((oCountry) => (
           <CountryListItem key={oCountry.letter} country={oCountry} />
         ))}
       </ul>
-      {appState.isFinished && (
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          onClick={handleNext}
-          className="btn orange ml-auto d-block"
-        >
-          Siguiente
-        </motion.button>
-      )}
+      <motion.button
+        disabled={!appState.isFinished}
+        onClick={handleNext}
+        className="btn orange ml-auto d-block"
+      >
+        Siguiente
+      </motion.button>
     </motion.div>
   );
 };

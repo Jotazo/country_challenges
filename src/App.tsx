@@ -3,32 +3,34 @@ import { AnimatePresence } from "framer-motion";
 
 import { AppContext } from "./context/AppContext";
 
-import CountryCardLayout from "./components/CountryCardLayout";
+import CardLayout from "./layout/CardLayout";
 import CountryList from "./components/CountryList/CountryList";
-import SelectionCard from "./components/SelectionCard";
 import Results from "./components/Results";
+import SelectionCard from "./components/SelectionCard";
+import TimerCountdown from "./components/TimerCountdown";
 
 import "./App.css";
 
 function App() {
   const { appState, gameSelected } = useContext(AppContext)!;
 
+  const bIsGameFinished: boolean = appState.isFinished && gameSelected === "";
+  const bIsGameSelected: boolean = gameSelected !== "";
+
   const ComponentToShow = () => {
     return (
       <AnimatePresence mode="wait">
-        {gameSelected === "" ? <SelectionCard /> : <CountryList />}
+        {!bIsGameSelected ? <SelectionCard /> : <CountryList />}
       </AnimatePresence>
     );
   };
 
-  const bIsGameFinished = appState.isFinished && gameSelected === "";
   return (
     <div className="App">
-      <CountryCardLayout isFinished={bIsGameFinished}>
-        <AnimatePresence mode="wait">
-          {bIsGameFinished ? <Results /> : ComponentToShow()}
-        </AnimatePresence>
-      </CountryCardLayout>
+      <CardLayout>
+        {bIsGameFinished ? <Results /> : ComponentToShow()}
+      </CardLayout>
+      {bIsGameSelected && <TimerCountdown />}
     </div>
   );
 }

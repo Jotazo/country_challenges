@@ -1,0 +1,9 @@
+.score-element {
+  font-family: Poppins700, sans-serif;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.score-element span {
+  color: #6fcf97;
+}
