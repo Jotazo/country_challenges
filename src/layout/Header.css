@@ -5,8 +5,9 @@
 .layout-section {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: fit-content;
-  min-height: 24px;
+  min-height: 50px;
 }
 
 .layout-section span {
@@ -21,7 +22,7 @@
 .layout-logo {
   position: absolute;
   right: 0;
-  top: 2rem;
+  top: 3rem;
   width: 125px;
 }
 

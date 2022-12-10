@@ -1,33 +1,36 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
+
 import { AppContext } from "../context/AppContext";
 
 import "./TimerCountdown.css";
 
 const TimerCountdown = () => {
-  const { appState, setCountdownTimer, setFinished, setAnswer } =
-    useContext(AppContext)!;
+  const { appState, setFinished, setAnswer } = useContext(AppContext)!;
 
-  const { timeLeft, isFinished } = appState;
+  const { isFinished, timerKey } = appState;
 
-  useEffect(() => {
-    let interval: NodeJS.Timer;
-
-    if (timeLeft !== 0) {
-      interval = setInterval(() => {
-        setCountdownTimer();
-      }, 1000);
-    }
-
-    if (timeLeft === 0 && !isFinished) {
-      setFinished();
-      setAnswer(false);
-    }
-
-    return () => clearInterval(interval);
-  }, [isFinished, setAnswer, setCountdownTimer, setFinished, timeLeft]);
-
-  return <motion.span className="timer">{appState.timeLeft}</motion.span>;
+  return (
+    <CountdownCircleTimer
+      key={timerKey}
+      isPlaying={!isFinished}
+      duration={10}
+      colors={["#4CBB17", "#F7B801", "#A30000", "#A30000"]}
+      colorsTime={[7, 5, 2, 0]}
+      size={50}
+      strokeWidth={7}
+      rotation="counterclockwise"
+      onComplete={() => {
+        setFinished();
+        setAnswer(false);
+      }}
+    >
+      {({ remainingTime }) => (
+        <motion.span className="timer">{remainingTime}</motion.span>
+      )}
+    </CountdownCircleTimer>
+  );
 };
 
 export default TimerCountdown;

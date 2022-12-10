@@ -5,9 +5,9 @@ import { AppContext } from "./context/AppContext";
 
 import CardLayout from "./layout/CardLayout";
 import CountryList from "./components/CountryList/CountryList";
+import LanguageSelector from "./components/LanguageSelector";
 import Results from "./components/Results";
 import SelectionCard from "./components/SelectionCard";
-import TimerCountdown from "./components/TimerCountdown";
 
 import "./App.css";
 
@@ -27,10 +27,10 @@ function App() {
 
   return (
     <div className="App">
+      {!bIsGameSelected && <LanguageSelector />}
       <CardLayout>
         {bIsGameFinished ? <Results /> : ComponentToShow()}
       </CardLayout>
-      {bIsGameSelected && <TimerCountdown />}
     </div>
   );
 }

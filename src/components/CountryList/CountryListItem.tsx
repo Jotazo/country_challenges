@@ -6,7 +6,9 @@ import { ICountryWithSuccess } from "../../interfaces/oCountry";
 import { IAppState } from "../../context/interfaces";
 
 import { AppContext } from "../../context/AppContext";
+
 import useOcountry from "../../hooks/useOcountry";
+import { LANGUAGES } from "../../constants";
 import "./CountryListItem.css";
 
 const clickStyles = (oCountry: ICountryWithSuccess, appState: IAppState) => {
@@ -15,8 +17,7 @@ const clickStyles = (oCountry: ICountryWithSuccess, appState: IAppState) => {
 
   const isSuccess: boolean =
     (oCountry.isClicked && oCountry.selected) ||
-    (appState.isFinished && oCountry.selected) ||
-    (appState.timeLeft === 0 && oCountry.selected);
+    (appState.isFinished && oCountry.selected);
   const isError: boolean = oCountry.isClicked && !oCountry.selected;
 
   const clickedStyles: string = isSuccess
@@ -38,8 +39,10 @@ const CountryListItem = ({ country }: { country: ICountryWithSuccess }) => {
   const { appState, setAnswer } = useContext(AppContext)!;
   const { oCountry, setOcountryClicked } = useOcountry(country);
 
+  const langSelected = LANGUAGES[appState.languageSelected]
+
   const handleSelectedOption = () => {
-    if (appState.isFinished || appState.timeLeft === 0) return;
+    if (appState.isFinished) return;
     setOcountryClicked();
     setAnswer(oCountry.selected);
   };
@@ -48,7 +51,7 @@ const CountryListItem = ({ country }: { country: ICountryWithSuccess }) => {
 
   return (
     <li onClick={handleSelectedOption} className={`list-item ${clickedStyles}`}>
-      <span>{country.letter}</span> {country.name}{" "}
+      <span>{country.letter}</span> {country.name[langSelected]}{" "}
       {iconSelected && <img src={iconSelected} alt="icon" />}
     </li>
   );

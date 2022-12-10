@@ -2,6 +2,8 @@
   font-family: Poppins700, sans-serif;
   color: #fff;
   font-size: 1rem;
+  flex: 1;
+  text-align: end;
 }
 
 .score-element span {

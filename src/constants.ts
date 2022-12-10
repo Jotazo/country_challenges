@@ -1,12 +1,14 @@
-import { GameOptions } from "./types";
-
-export const GAME_OPTIONS: { [index: string]: GameOptions } = {
-  capitales: "Capitales",
-  banderas: "Banderas",
-  mixto: "Mixto",
+export const APP_CONFIG: {
+  initialLifes: number;
+  lifeImg: string;
+  initialLanguage: string;
+} = {
+  initialLifes: 3,
+  lifeImg: "🏴‍☠️",
+  initialLanguage: "es",
 };
 
-export const APP_CONFIG: { [index: string]: number } = {
-  initialLifes: 3,
-  timerLength: 10,
+export const LANGUAGES: { [index: string]: string } = {
+  es: "spa",
+  en: "eng",
 };

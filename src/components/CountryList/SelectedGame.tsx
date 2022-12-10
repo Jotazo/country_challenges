@@ -1,38 +1,51 @@
 import React from "react";
-import { GAME_OPTIONS } from "../../constants";
 import { ICountryWithSuccess } from "../../interfaces/oCountry";
+import { withTranslation } from "react-i18next";
+import { TranslatedComponentProps } from "../../types";
 
 type Props = {
   oCountry: ICountryWithSuccess;
   gameSelected?: string;
+} & TranslatedComponentProps;
+
+const CapitalGame = ({ t, oCountry }: Props) => {
+  const { capital } = oCountry;
+  return <h3 className="game-title">{t!("capitalGameText", { capital })}</h3>;
 };
 
-const CapitalGame = ({ oCountry }: Props) => {
-  return <h3 className="game-title">{oCountry.capital} es la capital de</h3>;
-};
+const CapitalGameTranslated = withTranslation()(CapitalGame);
 
-const FlagGame = ({ oCountry }: Props) => {
+const FlagGame = ({ t, oCountry }: Props) => {
   return (
     <>
       <img className="flag-img" src={oCountry.flag} alt="bandera" />
-      <h3 className="game-title">Esta es la bandera de</h3>
+      <h3 className="game-title">{t!("flagGameText")}</h3>
     </>
   );
 };
 
-const SelectedGame = React.memo(({ oCountry, gameSelected }: Props) => {
-  if (gameSelected === GAME_OPTIONS.capitales)
-    return <CapitalGame oCountry={oCountry} />;
+const FlagGameTranslated = withTranslation()(FlagGame);
 
-  if (gameSelected === GAME_OPTIONS.banderas)
-    return <FlagGame oCountry={oCountry} />;
+const RandomGame = ({ oCountry }: Props) => {
+  const bCapitalGame = Math.random() > 0.5;
+  return bCapitalGame ? (
+    <CapitalGameTranslated oCountry={oCountry} />
+  ) : (
+    <FlagGameTranslated oCountry={oCountry} />
+  );
+};
+
+const SelectedGame = React.memo(({ oCountry, gameSelected, i18n }: Props) => {
+  const lang = i18n!.language;
+  const GAME = i18n!.getResourceBundle(lang, "").gameOptions;
+  if (gameSelected === GAME.capitals)
+    return <CapitalGameTranslated oCountry={oCountry} />;
+
+  if (gameSelected === GAME.flags)
+    return <FlagGameTranslated oCountry={oCountry} />;
 
   // Si seleccionamos mixto retornará en funcion del valor aleatorio
-  return Math.random() > 0.5 ? (
-    <CapitalGame oCountry={oCountry} />
-  ) : (
-    <FlagGame oCountry={oCountry} />
-  );
+  return <RandomGame oCountry={oCountry} />;
 });
 
-export default SelectedGame;
+export default withTranslation()(SelectedGame);

@@ -1,5 +1,7 @@
 export interface ICountryParsed {
-  name: string;
+  name: {
+    [index: string]: string;
+  };
   capital: string;
   flag: string;
 }

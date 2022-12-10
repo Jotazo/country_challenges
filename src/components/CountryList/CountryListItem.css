@@ -1,17 +1,19 @@
+/* TODO: Mirar y quitar importants */
+
 .selected {
-  color: #fff;
+  color: #fff !important;
 }
 
 .error,
 .error:hover {
   background-color: #ea8282;
-  border: 2px solid #ea8282;
+  border-color: #ea8282 !important;
 }
 
 .success,
 .success:hover {
   background-color: #60bf88;
-  border-color: #60bf88;
+  border-color: #60bf88 !important;
 }
 
 .list-item span {

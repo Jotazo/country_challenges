@@ -1,27 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { GameOptions } from "../types";
-import { GAME_OPTIONS } from "../constants";
+import { withTranslation } from "react-i18next";
+
+import { TranslatedComponentProps } from "../types";
+import { getGameOptions } from "../utils/getResourceBundles";
 
 import SelectionCardItem from "./SelectionCardItem";
+import { selectionCard } from "../framerStyles";
 
-const SelectionCard = () => {
-  const OPTIONS: GameOptions[] = Object.values(GAME_OPTIONS).map(
-    (el: GameOptions) => el
-  );
+const SelectionCard = ({ t, i18n }: TranslatedComponentProps) => {
+  const OPTIONS = getGameOptions(t!, i18n!);
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{
-        opacity: 0,
-      }}
-    >
-      <h1 className="game-title">Selecciona el tipo de juego</h1>
+    <motion.div {...selectionCard}>
+      <h1 className="game-title">{t!("gameTitle")}</h1>
       <ul className="list">
-        {OPTIONS.map((opt: GameOptions, index) => (
+        {OPTIONS.map((opt: string, index) => (
           <SelectionCardItem key={index} sOption={opt} />
         ))}
       </ul>
@@ -29,4 +23,4 @@ const SelectionCard = () => {
   );
 };
 
-export default SelectionCard;
+export default withTranslation()(SelectionCard);

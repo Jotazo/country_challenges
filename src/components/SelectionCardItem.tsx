@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 
-import { GameOptions } from "../types";
 import { AppContext } from "../context/AppContext";
 import { listHoverStyles } from "../framerStyles";
 
-const SelectionCardItem = ({ sOption }: { sOption: GameOptions }) => {
+const SelectionCardItem = ({ sOption }: { sOption: string }) => {
   const { setGameSelected } = useContext(AppContext)!;
 
   return (

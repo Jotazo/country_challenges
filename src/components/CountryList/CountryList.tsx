@@ -1,13 +1,17 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
+import { withTranslation } from "react-i18next";
 
 import { AppContext } from "../../context/AppContext";
 import { QuizzContext } from "../../context/QuizzContext";
+import { TranslatedComponentProps } from "../../types";
 
 import CountryListItem from "./CountryListItem";
 import SelectedGame from "./SelectedGame";
 
-const CountryList = () => {
+import { countryList } from "../../framerStyles";
+
+const CountryList = ({ t }: TranslatedComponentProps) => {
   const { appState, setNext, setFinished, setGameSelected, gameSelected } =
     useContext(AppContext)!;
   const { randomQuiz, oCountrySuccess, getNewQuizz } =
@@ -17,29 +21,15 @@ const CountryList = () => {
     const bNextQuestion = appState.isSuccess;
     const bHaveLifes = appState.lifes !== 0;
     setNext();
-    if (bNextQuestion || bHaveLifes) {
-      getNewQuizz();
-    } else {
+    if (!bNextQuestion && !bHaveLifes) {
       setFinished();
       setGameSelected("");
     }
+    getNewQuizz();
   };
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: {
-          duration: 1.5,
-        },
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      style={{ display: "flex", flexDirection: "column" }}
-    >
+    <motion.div {...countryList}>
       <SelectedGame oCountry={oCountrySuccess} gameSelected={gameSelected} />
       <ul className="list">
         {randomQuiz.map((oCountry) => (
@@ -51,10 +41,10 @@ const CountryList = () => {
         onClick={handleNext}
         className="btn orange ml-auto d-block"
       >
-        Siguiente
+        {t!("btnNext")}
       </motion.button>
     </motion.div>
   );
 };
 
-export default CountryList;
+export default withTranslation()(CountryList);

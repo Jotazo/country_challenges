@@ -8,9 +8,15 @@ export const parseCountries = (
     filterCountriesWithCapital(aoCountries);
   const aoCountriesFilteredWithOnlyOneCapital =
     filterCountriesWithOnlyOneCapital(aoCountriesFilteredWithCapital);
-  return aoCountriesFilteredWithOnlyOneCapital.map((oCountry: IApiCountry) => {
+  const aoCountriesRecognized = filterCountriesRecognized(
+    aoCountriesFilteredWithOnlyOneCapital
+  );
+  return aoCountriesRecognized.map((oCountry: IApiCountry) => {
     return {
-      name: oCountry.translations.spa.common,
+      name: {
+        spa: oCountry.translations.spa.common,
+        eng: oCountry.name.common
+      },
       capital: oCountry.capital?.[0] || "",
       flag: oCountry.flags.png,
     };
@@ -27,4 +33,10 @@ const filterCountriesWithOnlyOneCapital = (
   aoCountries: IApiCountry[]
 ): IApiCountry[] => {
   return aoCountries.filter((oCountry) => oCountry.capital?.length === 1);
+};
+
+const filterCountriesRecognized = (
+  aoCountries: IApiCountry[]
+): IApiCountry[] => {
+  return aoCountries.filter((oCountry) => oCountry.independent);
 };

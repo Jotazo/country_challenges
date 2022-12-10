@@ -1,7 +1,6 @@
 import React, { createContext, useState } from "react";
 
 import { IAppContext, IAppState } from "./interfaces";
-import { GameOptions } from "../types";
 
 import { APP_CONFIG } from "../constants";
 
@@ -10,21 +9,22 @@ export const AppContext = createContext<IAppContext | null>(null);
 const initialAppState: IAppState = {
   isFinished: false,
   isSuccess: false,
-  timeLeft: APP_CONFIG.timerLength,
   score: 0,
   lifes: APP_CONFIG.initialLifes,
+  timerKey: 0,
+  languageSelected: APP_CONFIG.initialLanguage,
 };
 
 const AppContextProvider = ({ children }: { children: JSX.Element }) => {
-  const [gameSelected, setGameSelected] = useState<GameOptions | "">("");
+  const [gameSelected, setGameSelected] = useState("");
 
   const [appState, setAppState] = useState<IAppState>(initialAppState);
 
   const setAnswer = (bisCorrectAnswer: boolean) => {
     setAppState({
+      ...appState,
       isFinished: true,
       isSuccess: bisCorrectAnswer,
-      timeLeft: 0,
       score: bisCorrectAnswer ? (appState.score += 1) : appState.score,
       lifes: bisCorrectAnswer ? appState.lifes : (appState.lifes -= 1),
     });
@@ -35,7 +35,7 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       ...appState,
       isFinished: false,
       isSuccess: false,
-      timeLeft: APP_CONFIG.timerLength,
+      timerKey: appState.timerKey === 0 ? 1 : 0,
     });
   };
 
@@ -47,19 +47,11 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     });
   };
 
-  const setCountdownTimer = () => {
-    setAppState({
-      ...appState,
-      timeLeft: (appState.timeLeft -= 1),
-    });
-  };
-
   const restartGame = () => {
     setAppState({
       ...initialAppState,
       score: 0,
       lifes: APP_CONFIG.initialLifes,
-      timeLeft: APP_CONFIG.timerLength,
     });
   };
 
@@ -70,10 +62,9 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
         setAnswer,
         setNext,
         setFinished,
-        setCountdownTimer,
         restartGame,
         gameSelected,
-        setGameSelected: (sGameSelected: GameOptions) =>
+        setGameSelected: (sGameSelected: string) =>
           setGameSelected(sGameSelected),
       }}
     >
